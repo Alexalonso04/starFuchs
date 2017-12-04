@@ -38,12 +38,12 @@ bool GameScene::init(){
 	score->setPosition(Director::getInstance()->getVisibleSize().width/2, 247*Director::getInstance()->getVisibleSize().height/256);
 	this->addChild(score, 1);
 
-	/*
+	
 	levelLabel = Label::createWithTTF("Level:", "forgotten futurist rg.ttf", 50);
 	levelLabel->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	levelLabel->setPosition(100, 247 * Director::getInstance()->getVisibleSize().height / 256);
 	this->addChild(levelLabel, 1);
-	*/
+	
 
 	auto backGround = Sprite::create("background.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
@@ -82,7 +82,7 @@ bool GameScene::init(){
 	//Lets cocos know that there is an update function to be called.
 	this->scheduleUpdate();
 
-	this -> schedule(schedule_selector(GameScene::SpawnAsteroid), .25);
+	this -> schedule(schedule_selector(GameScene::SpawnAsteroid), .45);
 
 	//Event Listener for collisions
 	auto contactListener = EventListenerPhysicsContact::create();
@@ -99,7 +99,7 @@ void GameScene::SpawnAsteroid(float dt) {
 
 //Changes to the Game Over screen and passes "_elapsed time (score)" for display
 void GameScene::changeScene() {
-	Director::getInstance()->replaceScene(TransitionFade::create(0.75, OverScene::createScene(_elapsedTime))); //scene transition animation
+	Director::getInstance()->replaceScene(TransitionFade::create(0.1,OverScene::createScene(_elapsedTime))); //scene transition animation
 }
 
 //Update function to handle game events and conditions that need to be checked continually
@@ -116,13 +116,17 @@ void GameScene::update(float secondsCounter) {
 	score->setString(secondsStream.str().c_str());
 	secondsStream.str(std::string()); //clears the stream to avoid overlap
 
-	//levelStream << "Level: " << levelNum;
-	//if (_elapsedTime % 100 == 0) {
-		//++levelNum;
-	//}
+	levelStream << "Level: " << levelNum;
+	if (_elapsedTime % 500 == 0) {
+		++levelNum;
+	}
 
-	//levelLabel->setString(levelStream.str().c_str());
-	//levelStream.str(std::string());
+	if (_elapsedTime % 100 == 0) {
+		asteroid.changeSpeed();
+	}
+
+	levelLabel->setString(levelStream.str().c_str());
+	levelStream.str(std::string());
 
 	//Ship Movement
 	if (isKeyPressed(EventKeyboard::KeyCode::KEY_LEFT_ARROW) && isKeyPressed(EventKeyboard::KeyCode::KEY_UP_ARROW))

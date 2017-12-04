@@ -20,15 +20,15 @@ public:
 	//Member Variables
 	//defined these here to be used in multiple functions in cpp
 	unsigned int _elapsedTime; //holds the elapse time since the game started
-	//unsigned int levelNum;
+	unsigned int levelNum;
 	std::stringstream secondsStream; //a string stream to hold the time passed
-	//std::stringstream levelStream;
+	std::stringstream levelStream;
 	
 	CREATE_FUNC(GameScene);
 private:
 	//Member Variables
 	cocos2d::Label* score; //label for the score of the game
-	//cocos2d::Label* levelLabel;
+	cocos2d::Label* levelLabel;
 	static std::map<cocos2d::EventKeyboard::KeyCode, 
 		   std::chrono::high_resolution_clock::time_point> keyCodes; /*variable of type map that holds the key that was pressed and the
 																 ammount of time that key was pressed */
