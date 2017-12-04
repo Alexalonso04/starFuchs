@@ -2,8 +2,7 @@
 #include "definitions.h"
 USING_NS_CC;
 
-Ship::Ship(cocos2d::Layer *layer)
-{
+Ship::Ship(cocos2d::Layer *layer){
 	visibleSize = Director::getInstance()->getVisibleSize();
 	origin = Director::getInstance()->getVisibleSize();
 
@@ -22,8 +21,8 @@ Ship::Ship(cocos2d::Layer *layer)
 	layer->addChild(ship, 100);
 }
 
-void Ship::moveLeft()
-{
+//Methods for ship movement
+void Ship::moveLeft(){
 	if ( (ship->getPositionX() >= 100) )
 	{
 		ship->setPosition(ship->getPositionX() - 6, ship->getPositionY());

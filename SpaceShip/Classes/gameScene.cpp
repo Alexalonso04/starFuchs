@@ -43,8 +43,11 @@ bool GameScene::init(){
 	levelLabel->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	levelLabel->setPosition(100, 247 * Director::getInstance()->getVisibleSize().height / 256);
 	this->addChild(levelLabel, 1);
-	
+	//___________________________________________________________________________
 
+	
+	//Sprites
+	//Background Sprite
 	auto backGround = Sprite::create("background.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	backGround->setPosition(Director::getInstance()->getVisibleSize().width/2, Director::getInstance()->getVisibleSize().height/2);
@@ -52,9 +55,9 @@ bool GameScene::init(){
 	//___________________________________________________________________________
 
 	//Objects
-	spaceship = new Ship(this);
+	spaceship = new Ship(this); //creates a new instance of the ship object 
 
-	//Class the update funtion to start running
+	//Call the update funtion
 	this->scheduleUpdate();
 
 	//Event Listener for the keyboard
@@ -94,7 +97,7 @@ bool GameScene::init(){
 }
 
 void GameScene::SpawnAsteroid(float dt) {
-	asteroid.SpawnAsteroid(this);
+	asteroid.SpawnAsteroid(this); //spawns a new asteroid
 }
 
 //Changes to the Game Over screen and passes "_elapsed time (score)" for display
@@ -117,16 +120,20 @@ void GameScene::update(float secondsCounter) {
 	secondsStream.str(std::string()); //clears the stream to avoid overlap
 
 	levelStream << "Level: " << levelNum;
+	//Increases the level once 1/2s has passed
 	if (_elapsedTime % 500 == 0) {
 		++levelNum;
 	}
 
+	//Updates the score label with the new score, and deletes the old label to avoid being overdrawn
+	levelLabel->setString(levelStream.str().c_str());
+	levelStream.str(std::string());
+
+	//Increases the speed of the asteroids every 100ms
 	if (_elapsedTime % 100 == 0) {
 		asteroid.changeSpeed();
 	}
 
-	levelLabel->setString(levelStream.str().c_str());
-	levelStream.str(std::string());
 
 	//Ship Movement
 	if (isKeyPressed(EventKeyboard::KeyCode::KEY_LEFT_ARROW) && isKeyPressed(EventKeyboard::KeyCode::KEY_UP_ARROW))
@@ -186,6 +193,7 @@ double GameScene::keyPressedDuration(EventKeyboard::KeyCode code) {
 		(std::chrono::high_resolution_clock::now() - keyCodes[code]).count();
 }
 
+//Returns true of there is collision between objects
 bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact) {
 	//Creates two Physics Body instances that hold their bodies
 	PhysicsBody *bodyA = contact.getShapeA()->getBody();
