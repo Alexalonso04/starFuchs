@@ -175,6 +175,7 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact) {
 
 	if ((SHIP_COLLISION_BITMASK == bodyA->getCollisionBitmask() && ASTEROID_COLLISION_BITMASK == bodyB->getCollisionBitmask())
 		|| (SHIP_COLLISION_BITMASK == bodyB->getCollisionBitmask() && ASTEROID_COLLISION_BITMASK == bodyA->getCollisionBitmask()) ) {
+		keyCodes.clear();
 		GameScene::changeScene();
 		return true;
 	}
@@ -182,4 +183,3 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact) {
 
 //Because Cocos2dx requires createScene() to be static, we need to make other non-pointer members static
 std::map<cocos2d::EventKeyboard::KeyCode, std::chrono::high_resolution_clock::time_point> GameScene::keyCodes;
-
