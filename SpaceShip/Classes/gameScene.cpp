@@ -183,4 +183,3 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact) {
 
 //Because Cocos2dx requires createScene() to be static, we need to make other non-pointer members static
 std::map<cocos2d::EventKeyboard::KeyCode, std::chrono::high_resolution_clock::time_point> GameScene::keyCodes;
-
