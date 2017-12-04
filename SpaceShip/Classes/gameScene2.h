@@ -6,7 +6,7 @@
 #include "asteroid.h"
 #include "laser.h"
 
-class GameScene : public cocos2d::Layer{
+class GameScene2 : public cocos2d::Layer{
 public:
 	//Methods
 	static cocos2d::Scene* createScene(); //Creates a new scene
@@ -24,7 +24,7 @@ public:
 	unsigned int _elapsedTime; //holds the elapse time since the game started
 	std::stringstream secondsStream; //a string stream to hold the time passed
 
-	CREATE_FUNC(GameScene);
+	CREATE_FUNC(GameScene2);
 private:
 	//Member Variables
 	cocos2d::Label* score; //label for the score of the game

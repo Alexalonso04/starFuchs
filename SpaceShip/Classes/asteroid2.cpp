@@ -1,16 +1,16 @@
-#include "asteroid.h"
+#include "asteroid2.h"
 #include "definitions.h"
 
 USING_NS_CC;
 
-asteroid::asteroid() {
+asteroid2::asteroid2() {
 	visibleSize = Director::getInstance()->getVisibleSize();
 	origin = Director::getInstance()->getVisibleOrigin();
 }
 
 
 
-void  asteroid::SpawnAsteroid(cocos2d::Layer *Layer) 
+void  asteroid2::SpawnAsteroid(cocos2d::Layer *Layer) 
 {
 	CCLOG("SPAWN ASTEROID");
 

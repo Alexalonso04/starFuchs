@@ -3,9 +3,9 @@
 
 #include "cocos2d.h"
 
-class asteroid {
+class asteroid2 {
 public:
-	asteroid();
+	asteroid2();
 
 	void SpawnAsteroid(cocos2d::Layer * Layer);
 

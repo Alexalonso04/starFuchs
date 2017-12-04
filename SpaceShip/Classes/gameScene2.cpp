@@ -1,4 +1,4 @@
-#include "gameScene.h" 
+#include "gameScene2.h" 
 #include "GameOverScene.h" //handles the Game Over screen
 #include "asteroid.h"  //handles the asteroid class
 #include "Ship.h"      //handles the ship class
@@ -11,18 +11,18 @@
 USING_NS_CC;
 
 //Scene constructor
-Scene* GameScene::createScene()
+Scene* GameScene2::createScene()
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::createWithPhysics();
-	auto layer = GameScene::create();
+	auto layer = GameScene2::create();
 
 	scene->addChild(layer); //adds the layer as a node of the Scene tree
 	return scene;
 }
 
 //Initializes game components, such as labels, sprites, and physics bodies
-bool GameScene::init(){
+bool GameScene2::init(){
 	//if the layer is not present, return false
 	if (!Layer::init()) {
 		return false;
@@ -74,34 +74,34 @@ bool GameScene::init(){
 	//Lets cocos know that there is an update function to be called.
 	this->scheduleUpdate();
 
-	this -> schedule(schedule_selector(GameScene::SpawnAsteroid), .25);
+	this -> schedule(schedule_selector(GameScene2::SpawnAsteroid), .25);
 
 	//Event Listener for collisions
 	auto contactListener = EventListenerPhysicsContact::create();
-	contactListener->onContactBegin = CC_CALLBACK_1(GameScene::onContactBegin, this);
+	contactListener->onContactBegin = CC_CALLBACK_1(GameScene2::onContactBegin, this);
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(contactListener, this);
 
 	return true;
 
 }
 
-void GameScene::SpawnAsteroid(float dt)
+void GameScene2::SpawnAsteroid(float dt)
 {
 	asteroid.SpawnAsteroid(this);
 }
 
-void GameScene::SpawnLaser(float dt) 
+void GameScene2::SpawnLaser(float dt) 
 {
 	laser.SpawnLaser(this);
 }
 //Changes to the Game Over screen and passes "_elapsed time (score)" for display
-void GameScene::changeScene() {
+void GameScene2::changeScene() {
 	Director::getInstance()->replaceScene(TransitionFade::create(0.75, OverScene::createScene(_elapsedTime))); //scene transition animation
 }
 
 //Update function to handle game events and conditions that need to be checked continually
 //Handles most of the game logic
-void GameScene::update(float secondsCounter) {
+void GameScene2::update(float secondsCounter) {
 	//Node::update(secondsCounter);
 
 	//Adds the elapsed time to the score variable to display at the top
@@ -154,12 +154,12 @@ void GameScene::update(float secondsCounter) {
 	if (!isKeyPressed(EventKeyboard::KeyCode::KEY_SPACE))
 	{
 
-		this->schedule(schedule_selector(GameScene::SpawnLaser), .2);
+		this->schedule(schedule_selector(GameScene2::SpawnLaser), .2);
 	}
 }
 
 //Determines if a specified key code is being pressed
-bool GameScene::isKeyPressed(EventKeyboard::KeyCode code) {
+bool GameScene2::isKeyPressed(EventKeyboard::KeyCode code) {
 
 	//Checks if the code of the key pressed matches the values stored in std::map keyCodes
 	if (keyCodes.find(code) != keyCodes.end()) { //Goes through the entire keyCodes map
@@ -172,12 +172,12 @@ bool GameScene::isKeyPressed(EventKeyboard::KeyCode code) {
 
 //Determines the ammount of time a specified key code is being pressed
 //*Posible Delete it
-double GameScene::keyPressedDuration(EventKeyboard::KeyCode code) {
+double GameScene2::keyPressedDuration(EventKeyboard::KeyCode code) {
 	return std::chrono::duration_cast<std::chrono::milliseconds> 
 		(std::chrono::high_resolution_clock::now() - keyCodes[code]).count();
 }
 
-bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact) {
+bool GameScene2::onContactBegin(cocos2d::PhysicsContact &contact) {
 	//Creates two Physics Body instances that hold their bodies
 	PhysicsBody *bodyA = contact.getShapeA()->getBody();
 	PhysicsBody *bodyB = contact.getShapeB()->getBody();
@@ -187,10 +187,10 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact) {
 	if ((SHIP_COLLISION_BITMASK == bodyA->getCollisionBitmask() && ASTEROID_COLLISION_BITMASK == bodyB->getCollisionBitmask())
 		|| (SHIP_COLLISION_BITMASK == bodyB->getCollisionBitmask() && ASTEROID_COLLISION_BITMASK == bodyA->getCollisionBitmask()) ) {
 		keyCodes.clear();
-		GameScene::changeScene();
+		GameScene2::changeScene();
 		return true;
 	}
 }
 
 //Because Cocos2dx requires createScene() to be static, we need to make other non-pointer members static
-std::map<cocos2d::EventKeyboard::KeyCode, std::chrono::high_resolution_clock::time_point> GameScene::keyCodes;
+std::map<cocos2d::EventKeyboard::KeyCode, std::chrono::high_resolution_clock::time_point> GameScene2::keyCodes;
