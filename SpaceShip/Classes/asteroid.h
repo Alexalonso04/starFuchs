@@ -17,7 +17,6 @@ private:
 	double speed; //holds the speed at which the asteroid falls
 		
 	cocos2d::Sprite *aster; //holds an asteroid object
-
 };
 
 #endif

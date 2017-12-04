@@ -23,6 +23,7 @@ public:
 	unsigned int levelNum;
 	std::stringstream secondsStream; //a string stream to hold the time passed
 	std::stringstream levelStream;
+	void changeSpawnSpeed();
 	
 	CREATE_FUNC(GameScene);
 private:
@@ -37,6 +38,8 @@ private:
 
 	void SpawnAsteroid(float dt); //spawn asteroid function
 	asteroid asteroid;  //asteroid variable
+
+	double spawnSpeed;
 
 	//Member Functions
 	bool onContactBegin(cocos2d::PhysicsContact &contact); //Function to handle collisions
