@@ -175,6 +175,7 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact) {
 
 	if ((SHIP_COLLISION_BITMASK == bodyA->getCollisionBitmask() && ASTEROID_COLLISION_BITMASK == bodyB->getCollisionBitmask())
 		|| (SHIP_COLLISION_BITMASK == bodyB->getCollisionBitmask() && ASTEROID_COLLISION_BITMASK == bodyA->getCollisionBitmask()) ) {
+		keyCodes.clear();
 		GameScene::changeScene();
 		return true;
 	}
