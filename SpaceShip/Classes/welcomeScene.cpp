@@ -33,7 +33,7 @@ bool WelcomeScene::init()
 	start->setPosition(400, 575);
 	start->setColor(ccc3(0, 0, 0));
 
-	auto backGround = Sprite::create("welcome_background.png");
+	auto backGround = Sprite::create("welcomeBackground.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	backGround->setPosition(400, 640);
 

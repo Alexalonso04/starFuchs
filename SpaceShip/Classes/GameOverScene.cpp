@@ -51,7 +51,7 @@ bool OverScene::init()
 	answer->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	answer->setPosition(400, 300);
 
-	auto backGround = Sprite::create("background.png");
+	auto backGround = Sprite::create("gameOverbackground.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	backGround->setPosition(400, 640);
 
