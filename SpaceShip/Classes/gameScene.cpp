@@ -29,6 +29,7 @@ bool GameScene::init(){
 	}
 	//Variables
 	_elapsedTime = 0;
+	spawnSpeed = 0.45;
 	//levelNum = 1;
 
 	//Labels_____________________________________________________________________
@@ -82,7 +83,7 @@ bool GameScene::init(){
 	//Lets cocos know that there is an update function to be called.
 	this->scheduleUpdate();
 
-	this -> schedule(schedule_selector(GameScene::SpawnAsteroid), .45);
+	this -> schedule(schedule_selector(GameScene::SpawnAsteroid), .45); //Spawn asteroid
 
 	//Event Listener for collisions
 	auto contactListener = EventListenerPhysicsContact::create();
@@ -119,11 +120,13 @@ void GameScene::update(float secondsCounter) {
 	levelStream << "Level: " << levelNum;
 	if (_elapsedTime % 500 == 0) {
 		++levelNum;
+		changeSpawnSpeed();
 	}
 
 	if (_elapsedTime % 100 == 0) {
 		asteroid.changeSpeed();
 	}
+
 
 	levelLabel->setString(levelStream.str().c_str());
 	levelStream.str(std::string());
@@ -199,6 +202,10 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact) {
 		GameScene::changeScene();
 		return true;
 	}
+}
+
+void GameScene::changeSpawnSpeed(){
+	spawnSpeed = spawnSpeed - 0.001;
 }
 
 //Because Cocos2dx requires createScene() to be static, we need to make other non-pointer members static
