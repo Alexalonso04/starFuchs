@@ -31,6 +31,17 @@ void  asteroid::SpawnAsteroid(cocos2d::Layer *Layer)
 
 		auto asterAction = MoveBy::create(.005*visibleSize.height, Point(0, -visibleSize.height*1.5));
 
-		aster->runAction(asterAction);
+		aster->runAction(
+			Sequence::create(
+			(asterAction),
+				RemoveSelf::create(true),
+				nullptr));
+
+		Point point1 = aster->convertToNodeSpace(aster->getPosition());
+
+		if (point1.y < visibleSize.height / 2)
+		{
+			aster->removeChild(aster, true);
+		}
 
 } 
