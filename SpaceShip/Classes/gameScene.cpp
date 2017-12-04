@@ -29,13 +29,21 @@ bool GameScene::init(){
 	}
 	//Variables
 	_elapsedTime = 0;
+	//levelNum = 1;
 
 	//Labels_____________________________________________________________________
 	//Score label
 	score = Label::createWithTTF("Score:", "forgotten futurist rg.ttf", 50);
 	score->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	score->setPosition(Director::getInstance()->getVisibleSize().width/2, 247*Director::getInstance()->getVisibleSize().height/256);
-	this->addChild(score, 3);
+	this->addChild(score, 1);
+
+	/*
+	levelLabel = Label::createWithTTF("Level:", "forgotten futurist rg.ttf", 50);
+	levelLabel->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
+	levelLabel->setPosition(100, 247 * Director::getInstance()->getVisibleSize().height / 256);
+	this->addChild(levelLabel, 1);
+	*/
 
 	auto backGround = Sprite::create("background.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
@@ -107,6 +115,14 @@ void GameScene::update(float secondsCounter) {
 	//adds the current score to the score label
 	score->setString(secondsStream.str().c_str());
 	secondsStream.str(std::string()); //clears the stream to avoid overlap
+
+	//levelStream << "Level: " << levelNum;
+	//if (_elapsedTime % 100 == 0) {
+		//++levelNum;
+	//}
+
+	//levelLabel->setString(levelStream.str().c_str());
+	//levelStream.str(std::string());
 
 	//Ship Movement
 	if (isKeyPressed(EventKeyboard::KeyCode::KEY_LEFT_ARROW) && isKeyPressed(EventKeyboard::KeyCode::KEY_UP_ARROW))
