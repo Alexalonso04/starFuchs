@@ -23,15 +23,15 @@ bool WelcomeScene::init()
 	}
 
 	//welcome and start labels
-	auto label = Label::createWithTTF("Star Fuchs!", "software_tester_7.ttf", 130);
+	auto label = Label::createWithTTF("The New\n Frontier", "software_tester_7.ttf", 130);
 	label->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	label->setPosition(400, 1090);
-	label->setColor(ccc3(255, 255, 255));
+	label->setColor(ccc3(235, 200, 0));
 
 	auto start = Label::createWithTTF("Press enter\nto begin!", "forgotten futurist rg.ttf", 70);
 	start->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	start->setPosition(400, 575);
-	start->setColor(ccc3(0, 0, 0));
+	start->setColor(ccc3(255, 255, 255));
 
 	auto backGround = Sprite::create("welcomeBackground.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
