@@ -9,8 +9,8 @@ Ship::Ship(cocos2d::Layer *layer)
 
 	//Create ship sprite and set position
 	ship = cocos2d::Sprite::create("fighter-01.png");
-	ship->setPosition(visibleSize.width/2, 100);
-	ship->setScale(0.20);
+	ship->setPosition(visibleSize.width/2, 5* Director::getInstance()->getVisibleSize().height/64);
+	ship->setScale(0.10);
 	
 	//Creating the physics body for the ship, creating the collision bitmasks, and setting the sprite to the physics body
 	auto shipBody = cocos2d::PhysicsBody::createCircle(ship->getContentSize().width / 2);

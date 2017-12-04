@@ -34,12 +34,12 @@ bool GameScene::init(){
 	//Score label
 	score = Label::createWithTTF("Score:", "forgotten futurist rg.ttf", 50);
 	score->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	score->setPosition(400, 1235);
+	score->setPosition(Director::getInstance()->getVisibleSize().width/2, 247*Director::getInstance()->getVisibleSize().height/256);
 	this->addChild(score, 3);
 
 	auto backGround = Sprite::create("background.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	backGround->setPosition(400, 640);
+	backGround->setPosition(Director::getInstance()->getVisibleSize().width/2, Director::getInstance()->getVisibleSize().height/2);
 	this->addChild(backGround, 0);
 	//___________________________________________________________________________
 

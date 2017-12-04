@@ -30,30 +30,30 @@ bool OverScene::init()
 	auto over = Label::createWithTTF("GAME\nOVER", "Gabato.ttf", 160);
 	over->setColor(ccc3(255, 0, 0));
 	over->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	over->setPosition(400, 1000);
+	over->setPosition(Director::getInstance()->getVisibleSize().width/2, 25*Director::getInstance()->getVisibleSize().height/32);
 
 	auto score = Label::createWithTTF("Final Score and High Scores:", "forgotten futurist rg.ttf", 60);
 	score->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	score->setPosition(400, 750);
+	score->setPosition(Director::getInstance()->getVisibleSize().width/2, 75* Director::getInstance()->getVisibleSize().height/128);
 
 	//makes int into string to be used in 'last' label
 	String * tempScore = String::createWithFormat("%i", gameScore);
 
 	auto last = Label::createWithTTF(tempScore->getCString(), "forgotten futurist rg.ttf", 50);
 	last->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	last->setPosition(400, 700);
+	last->setPosition(Director::getInstance()->getVisibleSize().width/2, 35* Director::getInstance()->getVisibleSize().height/64);
 
 	auto again = Label::createWithTTF("Try again?", "forgotten futurist rg.ttf", 90);
 	again->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	again->setPosition(400, 420);
+	again->setPosition(Director::getInstance()->getVisibleSize().width/2, 21* Director::getInstance()->getVisibleSize().height/64);
 
 	auto answer = Label::createWithTTF("Y / N", "forgotten futurist rg.ttf", 70);
 	answer->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	answer->setPosition(400, 300);
+	answer->setPosition(Director::getInstance()->getVisibleSize().width/2, 15* Director::getInstance()->getVisibleSize().height/64);
 
 	auto backGround = Sprite::create("gameOverbackground.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	backGround->setPosition(400, 640);
+	backGround->setPosition(Director::getInstance()->getVisibleSize().width/2, Director::getInstance()->getVisibleSize().height/2);
 
 	this->addChild(over, 1);
 	this->addChild(score, 1);
@@ -96,7 +96,7 @@ bool OverScene::init()
 
 	auto highest = Label::createWithTTF(tempFirst->getCString(), "forgotten futurist rg.ttf", 50);
 	highest->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	highest->setPosition(400, 620);
+	highest->setPosition(Director::getInstance()->getVisibleSize().width/2, 31* Director::getInstance()->getVisibleSize().height / 64);
 	highest->setColor(ccc3(215, 215, 0));
 
 	this->addChild(highest, 1);
@@ -105,7 +105,7 @@ bool OverScene::init()
 
 	auto higher = Label::createWithTTF(tempSecond->getCString(), "forgotten futurist rg.ttf", 50);
 	higher->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	higher->setPosition(400, 570);
+	higher->setPosition(Director::getInstance()->getVisibleSize().width / 2, 57* Director::getInstance()->getVisibleSize().height / 128);
 	higher->setColor(ccc3(100, 215, 0));
 
 	this->addChild(higher, 1);
@@ -114,7 +114,7 @@ bool OverScene::init()
 
 	auto high = Label::createWithTTF(tempThird->getCString(), "forgotten futurist rg.ttf", 50);
 	high->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-	high->setPosition(400, 520);
+	high->setPosition(Director::getInstance()->getVisibleSize().width / 2, 13* Director::getInstance()->getVisibleSize().height / 32);
 	high->setColor(ccc3(255, 0, 0));
 
 	this->addChild(high, 1);
