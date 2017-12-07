@@ -7,7 +7,7 @@ Ship::Ship(cocos2d::Layer *layer){
 	origin = Director::getInstance()->getVisibleSize();
 
 	//Create ship sprite and set position
-	ship = cocos2d::Sprite::create("fighter-01.png");
+	ship = cocos2d::Sprite::create("C:/Users/Alejandro Alonso/Documents/starFuchs/SpaceShip/proj.win32/fighter-01.png");
 	ship->setPosition(visibleSize.width/2, 5* Director::getInstance()->getVisibleSize().height/64);
 	ship->setScale(0.10);
 	
@@ -23,7 +23,7 @@ Ship::Ship(cocos2d::Layer *layer){
 
 //Methods for ship movement
 void Ship::moveLeft(){
-	if ( (ship->getPositionX() >= 100) )
+	if ( (ship->getPositionX() >= 50) )
 	{
 		ship->setPosition(ship->getPositionX() - 6, ship->getPositionY());
 	}
@@ -31,7 +31,7 @@ void Ship::moveLeft(){
 
 void Ship::moveRight()
 {
-	if ((ship->getPositionX() <= visibleSize.width-100))
+	if ((ship->getPositionX() <= visibleSize.width-50))
 	{
 		ship->setPosition(ship->getPositionX() + 6, ship->getPositionY());
 	}
@@ -47,7 +47,7 @@ void Ship::moveUp()
 
 void Ship::moveDown()
 {
-	if ((ship->getPositionY() >= 100))
+	if ((ship->getPositionY() >= 50))
 	{
 		ship->setPosition(ship->getPositionX(), ship->getPositionY() - 6);
 	}

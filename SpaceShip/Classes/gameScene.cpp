@@ -16,7 +16,6 @@ Scene* GameScene::createScene()
 	// 'scene' is an autorelease object
 	auto scene = Scene::createWithPhysics();
 	auto layer = GameScene::create();
-
 	scene->addChild(layer); //adds the layer as a node of the Scene tree
 	return scene;
 }
@@ -34,22 +33,23 @@ bool GameScene::init(){
 
 	//Labels_____________________________________________________________________
 	//Score label
-	score = Label::createWithTTF("Score:", "forgotten futurist rg.ttf", 50);
+	score = Label::createWithTTF("Score:", "C:/Users/Alejandro Alonso/Documents/starFuchs/SpaceShip/proj.win32/forgotten futurist rg.ttf", 50);
 	score->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	score->setPosition(Director::getInstance()->getVisibleSize().width/2, 247*Director::getInstance()->getVisibleSize().height/256);
 	this->addChild(score, 1);
 
 	
-	levelLabel = Label::createWithTTF("Level:", "forgotten futurist rg.ttf", 50);
+	levelLabel = Label::createWithTTF("Level:", "C:/Users/Alejandro Alonso/Documents/starFuchs/SpaceShip/proj.win32/forgotten futurist rg.ttf", 50);
 	levelLabel->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	levelLabel->setPosition(100, 247 * Director::getInstance()->getVisibleSize().height / 256);
 	this->addChild(levelLabel, 1);
+
 	//___________________________________________________________________________
 
 	
 	//Sprites
 	//Background Sprite
-	auto backGround = Sprite::create("background.png");
+	auto backGround = Sprite::create("C:/Users/Alejandro Alonso/Documents/starFuchs/SpaceShip/proj.win32/background.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	backGround->setPosition(Director::getInstance()->getVisibleSize().width/2, Director::getInstance()->getVisibleSize().height/2);
 	this->addChild(backGround, 0);
@@ -86,7 +86,7 @@ bool GameScene::init(){
 	//Lets cocos know that there is an update function to be called.
 	this->scheduleUpdate();
 
-	this -> schedule(schedule_selector(GameScene::SpawnAsteroid), .45); //Spawn asteroid
+	this -> schedule(schedule_selector(GameScene::SpawnAsteroid), spawnSpeed); //Spawn asteroid
 
 	//Event Listener for collisions
 	auto contactListener = EventListenerPhysicsContact::create();
@@ -121,10 +121,20 @@ void GameScene::update(float secondsCounter) {
 	secondsStream.str(std::string()); //clears the stream to avoid overlap
 
 	levelStream << "Level: " << levelNum;
+
+	if (_elapsedTime == 2000) {
+		this->schedule(schedule_selector(GameScene::SpawnAsteroid), 0.25);
+	}
+	if (_elapsedTime == 5000) {
+		this->schedule(schedule_selector(GameScene::SpawnAsteroid), 0.15);
+	}
+
 	//Increases the level once 1/2s has passed
 	if (_elapsedTime % 500 == 0) {
 		++levelNum;
-		changeSpawnSpeed();
+		if (_elapsedTime <= 7000) {
+			changeSpawnSpeed();
+		}
 	}
 
 	//Updates the score label with the new score, and deletes the old label to avoid being overdrawn
@@ -211,7 +221,7 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact &contact) {
 }
 
 void GameScene::changeSpawnSpeed(){
-	spawnSpeed = spawnSpeed - 0.001;
+	spawnSpeed = spawnSpeed/1.05;
 }
 
 //Because Cocos2dx requires createScene() to be static, we need to make other non-pointer members static

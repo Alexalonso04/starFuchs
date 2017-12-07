@@ -17,7 +17,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	if (!glview) {
 		glview = GLViewImpl::create("Hello World");
 		//1000, 16000
-		glview->setFrameSize(1000, 1600); //sets the frame size of the game
+		glview->setFrameSize(900, 1440); //sets the frame size of the game
 		glview->setDesignResolutionSize(800, 1280, ResolutionPolicy::EXACT_FIT); //sets the resolution to fit the frame size of the game
 		director->setOpenGLView(glview);
 	}

@@ -24,20 +24,28 @@ bool WelcomeScene::init()
 
 	//Labels_________________________________________________________________________________________________________________________________________________________________________
 	//Game name label
-	auto label = Label::createWithTTF("STAR\n FUCHS", "software_tester_7.ttf", 160);
+	auto label = Label::createWithTTF("STAR\n FUCHS", "C:/Users/Alejandro Alonso/Documents/starFuchs/SpaceShip/proj.win32/software_tester_7.ttf", 160);
 	label->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	label->setPosition(Director::getInstance()->getVisibleSize().width/2, Director::getInstance()->getVisibleSize().height - Director::getInstance()->getVisibleSize().height/6);
 	label->setColor(ccc3(235, 200, 0));
 	
 	//Instruction label
-	auto start = Label::createWithTTF("Press enter\nto begin!", "forgotten futurist rg.ttf", 70);
+	auto start = Label::createWithTTF("Press enter\nto begin!", "C:/Users/Alejandro Alonso/Documents/starFuchs/SpaceShip/proj.win32/forgotten futurist rg.ttf", 70);
 	start->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	start->setPosition(Director::getInstance()->getVisibleSize().width/2, Director::getInstance()->getVisibleSize().height/2);
 	start->setColor(ccc3(255, 255, 255));
+
+	auto move = Label::createWithTTF("Use the arrow \nkeys to move!", "C:/Users/Alejandro Alonso/Documents/starFuchs/SpaceShip/proj.win32/forgotten futurist rg.ttf", 70);
+	move->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
+	move->setPosition(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 3);
+	move->setColor(ccc3(255, 255, 255));
+	this->addChild(move, 1);
+
+
 	//_______________________________________________________________________________________________________________________________________________________________________________
 
 	//Background Sprite
-	auto backGround = Sprite::create("welcomeBackground.png");
+	auto backGround = Sprite::create("C:/Users/Alejandro Alonso/Documents/starFuchs/SpaceShip/proj.win32/welcomeBackground.png");
 	backGround->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 	backGround->setPosition(Director::getInstance()->getVisibleSize().width/2, Director::getInstance()->getVisibleSize().height/2);
 

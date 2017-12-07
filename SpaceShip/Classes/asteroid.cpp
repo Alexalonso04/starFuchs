@@ -15,7 +15,7 @@ void  asteroid::SpawnAsteroid(cocos2d::Layer *Layer)
 {
 	CCLOG("SPAWN ASTEROID"); //logs to the console to make sure the asteroid has spawned
 
-		auto aster = Sprite::create("Asteroid2.png");	//Creates an asteroid sprite
+		auto aster = Sprite::create("C:/Users/Alejandro Alonso/Documents/starFuchs/SpaceShip/proj.win32/Asteroid2.png");	//Creates an asteroid sprite
 		auto random = CCRANDOM_0_1(); //variable to hold a random number between 0 and 1
 
 		auto asterPosition = (random * visibleSize.width) + (aster->getContentSize().height ); //sets the position of the asteroid
@@ -23,7 +23,7 @@ void  asteroid::SpawnAsteroid(cocos2d::Layer *Layer)
 		//Creates a physics body for the asteroid used in determining the collisions
 		auto asterBody = PhysicsBody::createCircle(aster->getContentSize().width * 6/10);
 
-		//asterBody->setDynamic(false);
+		//asterBody->setDynamic(true);
 		asterBody->setGravityEnable(false); //disables gravity for the asteroids 
 		asterBody->setCollisionBitmask(ASTEROID_COLLISION_BITMASK); //sets a collision mask to compare collisions with other object
 		asterBody->setContactTestBitmask(true);
@@ -54,5 +54,5 @@ void  asteroid::SpawnAsteroid(cocos2d::Layer *Layer)
 } 
 
 void asteroid::changeSpeed() {
-	speed = speed / 1.01;
+	speed = speed / 1.03;
 }
